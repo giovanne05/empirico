@@ -13,7 +13,7 @@ long int min( long int x, long int y)
     }
 }
 
-int * sliterativa( const int *first, const int *last, int value ) // sequencial iterativa
+int * sequencial_iterativa( const int *first, const int *last, int value ) // sequencial iterativa
 {
    while (*first != *last){
         if( *first == value){
@@ -24,67 +24,79 @@ int * sliterativa( const int *first, const int *last, int value ) // sequencial 
     return last; 
 }
 
-int * biterativa( int *first, int *last, int value ) // busca binaria iterativa
+int * binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
 {
-    auto size = last - first;
-    auto m = ((size/2)-1);
-
-    if(value == first[m]){
-        return &first[m];
-    }else if( value < first[m]){
-        for( auto i{0}; i < m ; i++){
-            if( value == first[i]){
-                return &first[i];
-            }
+    int i = 0;
+    do{
+        auto size = last - first;
+        auto m = ((size/2)-1);
+        
+        if(value < vet[m]){
+            first = &(vet[i]);
+            last = &(vet[m-1]);
+        }else if(value > vet[m]){
+            first = &(vet[m+1]);
+            last = &(vet[size]);
         }
-    }else{
-        for( auto i{0}; i < m; i++){
-            if ( value == first[i]){
-                return &first[i];
-            }
-        }
-    }
+        i++;
 
+   }while(first != value && vet[m] != value && last != value && first != last);
 
-    return last; // STUB
+   if(first == value){
+        return first;
+   }else if(vet[m] == value){
+        return vet[m];
+   }else if(last == value){
+        return last;
+   }else{
+        return "Elemento nao encontrado";
+   }
+ 
 }
-int * ternariait( int *first, int *last, int value ) // busca ternaria iterativa
+
+int * ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
 {
+    
+    long int *t1,*t2;
 
-	auto size = last - first;
-	auto m = ((size/3)-1);
-	auto t1 , t2;
+    do{
+        auto size = last - first;
+        auto m = ((size/3)-1);
+        int i = 0;
 
-	t1 = (m + m);
+        first = &(vet[i]);
+        last = &(vet[size]);
+        t1 = &(vet[m]);
+        t2 = &(vet[m+m]);
 
-	if(value == first[m]){
-		return &first[m];
-	}else if( value < first[m]){
-		for( auto i{0}; i < m ; i++){
-			if (value == first[i]){
-				return &first [i];
-			}
-		}
-	}else if ( value > first[m] && value <= first[t1] ){
-		if(value = first[t1]){
-			return &first[t1];
-		}
-		for(auto i{m}; i < t1 ; i++){
-			if(value == first[i]){
-				return &first[i];
-			}
-		}
-	}else {
-		for( auto i{t1}; i <= size; i++ ){
-			if(value == first[i]){
-				return &first[i];
-			}
-		}
-	}
+        if(value < t1){
+            i++;
+            last = t1;
+        }else if(value > t1 && value < t2){
+            first = t1;
+            last = t2;
+        }else if(value > t2){
+            first = t2;
+            size--;         
+        }
 
-	return last;
+   }while(first != value && t1 != value && t2 != value last != value );
 
+   if(first == value){
+        return first;
+   }else if(t1 == value){
+        return t1;
+   }else if(t2 == value){
+        return t2;
+   }else if(last == value){
+        return last;
+   }else{
+        return "Elemento nao encontrado";
+   }
+ 
+    
 }
+
 
 int JSearch( const long int *first, const long int *last, long int value )
 {
