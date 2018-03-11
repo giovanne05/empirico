@@ -1,6 +1,17 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
+#include <cmath>
+
+long int min( long int x, long int y)
+{
+    if(x < y)
+    {
+        return x;
+    }else{
+        return y;
+    }
+}
 
 int * sliterativa( const int *first, const int *last, int value ) // sequencial iterativa
 {
@@ -73,4 +84,92 @@ int * ternariait( int *first, int *last, int value ) // busca ternaria iterativa
 
 	return last;
 
+}
+
+int JSearch( const long int *first, const long int *last, long int value )
+{
+    long int *inicio = frist, *fim = last, m, prev = 0;
+    long int size = fim - inicio;
+
+    m = ceil(sqrt(size));
+
+    while(inicio[min( m, size )] < value)
+    {
+        prev = m;
+        m = m + m;
+
+        if(prev >= size)
+        {
+            return -1;
+        }
+    }
+
+    while(inicio[prev] < value)
+    {
+        prev++;
+
+        if(prev == min(size, m))
+        {
+            return -1;
+        }
+    }
+
+    if(inicio[prev] == value)
+    {
+        return prev;
+    }
+
+    return -1;
+}
+
+long int fibonacci( const long int *first, const long int *last, long int value)
+{
+    int fib_2 = 0;
+    int fib_1 = 1;
+    int fib = fib_1 + fib_2;
+
+    long int *inicio = first, *fim = last;
+    long int size = fim - inicio;
+
+    while(fib < size)
+    {
+        fib_2 = fib_1;
+        fib_1 = fib;
+        fib = fib_1 + fib_2;
+    } 
+
+    int offset = -1;
+
+    while(fib > 1)
+    {
+       
+        int i = min(offset+fib_2, size-1);
+ 
+       
+        if(inicio[i] < valor)
+        {
+            fib  = fib_1;
+            fib_1 = fib_2;
+            fib_2 = fib - fib_1;
+            offset = i;
+        }
+ 
+       
+        else if(inicio[i] > x)
+        {
+            fib  = fib_2;
+            fib_1 = fib_1 - fib_2;
+            fib_2 = fib - fib_1;
+        
+        }else{
+            return i;
+        } 
+    }
+
+    if(fib_1 && arr[offset+1] == valor)
+    {
+        return offset+1;
+    }
+
+    return -1;
 }
