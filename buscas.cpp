@@ -97,6 +97,37 @@ int * ternaria_iterativa( long int *first, long int *last, long int value ) // b
     
 }
 
+int ternaria_recursiva( long int *first, long int *last, long int value ) // busca ternaria iterativa
+{
+    long int *t1,*t2;
+
+    auto size = last - first;
+        auto m = ((size/3)-1);
+        int i = 0;
+
+        first = &(vet[i]);
+        last = &(vet[size]);
+        t1 = &(vet[m]);
+        t2 = &(vet[m+m]);
+
+        if(value < t1){
+            return ternaria_recursiva(first+1,t1);
+        }else if(value > t1 && value < t2){
+            return ternaria_recursiva(t1+1,t2-1);
+        }else if(value > t2){
+            return ternaria_recursiva(t2+1,last);      
+        }if(first == value){
+            return first;
+        }else if(t1 == value){
+            return t1;
+        }else if(t2 == value){
+            return t2;
+        }else if(last == value){
+            return last;
+        }else{
+            return -1;
+        }
+}
 
 int JSearch( const long int *first, const long int *last, long int value )
 {
