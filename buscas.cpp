@@ -133,8 +133,10 @@ int JSearch( const long int *first, const long int *last, long int value )
 {
     long int *inicio = frist, *fim = last, m, prev = 0;
     long int size = fim - inicio;
+		
+    long int prev = 0;    
 
-    m = ceil(sqrt(size));
+    long int m = ceil(sqrt(size));
 
     while(inicio[min( m, size )] < value)
     {
