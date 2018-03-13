@@ -129,7 +129,7 @@ int ternaria_recursiva( long int *first, long int *last, long int value ) // bus
         }
 }
 
-int JSearch( const long int *first, const long int *last, long int value )
+int JSearch( long int *first, long int *last, long int value )
 {
     long int *inicio = frist, *fim = last, m, prev = 0;
     long int size = fim - inicio;
@@ -167,7 +167,7 @@ int JSearch( const long int *first, const long int *last, long int value )
     return -1;
 }
 
-long int fibonacci( const long int *first, const long int *last, long int value)
+long int fibonacci( long int *first, long int *last, long int value)
 {
     int fib_2 = 0;
     int fib_1 = 1;
