@@ -131,12 +131,16 @@ int ternaria_recursiva( long int *first, long int *last, long int value ) // bus
 
 int JSearch( long int *first, long int *last, long int value )
 {
-    long int *inicio = frist, *fim = last, m, prev = 0;
+    long int *inicio, *fim, m, prev;
+    
+    inicio = first;
+    fim = last;
+
     long int size = fim - inicio;
 		
-    long int prev = 0;    
+    prev = 0;    
 
-    long int m = ceil(sqrt(size));
+    m = ceil(sqrt(size));
 
     while(inicio[min( m, size )] < value)
     {
@@ -200,7 +204,7 @@ long int fibonacci( long int *first, long int *last, long int value)
         }
  
        
-        else if(inicio[i] > x)
+        else if(inicio[i] > value)
         {
             fib  = fib_2;
             fib_1 = fib_1 - fib_2;
