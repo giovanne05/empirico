@@ -13,7 +13,7 @@ long int min( long int x, long int y)
     }
 }
 
-int * sequencial_iterativa( const int *first, const int *last, int value ) // sequencial iterativa
+int  sequencial_iterativa( const int *first, const int *last, int value ) // sequencial iterativa
 {
    while (*first != *last){
         if( *first == value){
@@ -21,10 +21,10 @@ int * sequencial_iterativa( const int *first, const int *last, int value ) // se
         }
    }
 
-    return last; 
+    return -1; 
 }
 
-int * binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
+int binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
 {
     int i = 0;
     do{
@@ -49,12 +49,12 @@ int * binaria_iterativa( long int *first, long int *last, long int value ) // bu
    }else if(last == value){
         return last;
    }else{
-        return "Elemento nao encontrado";
+        return -1;
    }
  
 }
 
-int * ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
+int ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
 {
     
     long int *t1,*t2;
@@ -91,7 +91,7 @@ int * ternaria_iterativa( long int *first, long int *last, long int value ) // b
    }else if(last == value){
         return last;
    }else{
-        return "Elemento nao encontrado";
+        return -1;
    }
  
     
