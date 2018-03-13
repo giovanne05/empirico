@@ -189,7 +189,7 @@ long int fibonacci( const long int *first, const long int *last, long int value)
         int i = min(offset+fib_2, size-1);
  
        
-        if(inicio[i] < valor)
+        if(inicio[i] < value)
         {
             fib  = fib_1;
             fib_1 = fib_2;
@@ -209,7 +209,7 @@ long int fibonacci( const long int *first, const long int *last, long int value)
         } 
     }
 
-    if(fib_1 && arr[offset+1] == valor)
+    if(fib_1 && inicio[offset+1] == value)
     {
         return offset+1;
     }

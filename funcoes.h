@@ -2,16 +2,18 @@
 #include <vector>
 #include <iterator>
 
-int * sliterativa( const int* , const int* , int );
+int * sliterativa( const int *first , const int *last , int value );
 
-int * biterativa( const int*, const int*, int );
+int * biterativa( const int *first, const int *last, int value );
 
-int * linearR( const int*, const int*, int );
+//int * linearR( const int *first, const int *last, int );
 
-int * ternariait( int*, int*, int );
+int * ternaria_iterativa( long int *first, long int *last, long int value );
 
-int JSearch( const long int*, const long int*, long int  );
+int ternaria_recursiva( long int *first, long int *last, long int value );
 
-long int min( long int , long int );
+int JSearch( const long int *first, const long int *last, long int value );
 
-long int fibonacci( const long int*, const long int*, long int );
+long int min( long int x, long int y);
+
+long int fibonacci( const long int *first, const long int *first, long int value );
