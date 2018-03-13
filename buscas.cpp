@@ -142,6 +142,10 @@ int JSearch( long int *first, long int *last, long int value )
 
     m = ceil(sqrt(size));
 
+    if(*fim == value){
+        return size;
+    }
+
     while(inicio[min( m, size )] < value)
     {
         prev = m;
@@ -167,6 +171,8 @@ int JSearch( long int *first, long int *last, long int value )
     {
         return prev;
     }
+
+    
 
     return -1;
 }
