@@ -13,17 +13,17 @@ long int min( long int x, long int y)
     }
 }
 
-int  sequencial_iterativa( const int *first, const int *last, int value ) // sequencial iterativa
+long int sequencial_iterativa( long int *first, long int *last, long int value ) // sequencial iterativa
 {
-   while (*first != *last){
-        if( *first == value){
-            return first;
+   while (first != last){
+        if( *first == value){        
+			 return *first;
         }
+		first++;
    }
 
     return -1; 
 }
-
 int binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
 {
     int i = 0;
@@ -56,77 +56,79 @@ int binaria_iterativa( long int *first, long int *last, long int value ) // busc
 
 int ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
 {
+
+	long int *backup;
+
+	backup = first;
     
     long int *t1,*t2;
+	
 
     do{
-        auto size = last - first;
-        auto m = ((size/3)-1);
-        int i = 0;
+       
+	t1 =(last - first)/3 + first;
+	t2 = ((last - first)/3)*2 + first;
 
-        first = &(vet[i]);
-        last = &(vet[size]);
-        t1 = &(vet[m]);
-        t2 = &(vet[m+m]);
 
-        if(value < t1){
-            i++;
-            last = t1;
-        }else if(value > t1 && value < t2){
-            first = t1;
-            last = t2;
-        }else if(value > t2){
-            first = t2;
-            size--;         
-        }
+		if(value == *t1){
+			return t1 - backup;
+		}else if(value == *t2){
+			return t2 - backup;
+		}else if(value == *first){
+			return first - backup;		
+		}else if(value == *last){
+			return last - backup;	
+		
+		}else if(value<*t1){
+			last = t1 -1;
+		
+		}else if(value>*t1 && value<*t2){
+			first = t1 + 1;
+			last = t2 - 1;
+		
+		}else if(value > *t2){
+			first = t2 + 1;
+		}
 
-   }while(first != value && t1 != value && t2 != value last != value );
+	
+	}while(first<=last);
 
-   if(first == value){
-        return first;
-   }else if(t1 == value){
-        return t1;
-   }else if(t2 == value){
-        return t2;
-   }else if(last == value){
-        return last;
-   }else{
-        return -1;
-   }
- 
+return -1;
     
 }
 
-int ternaria_recursiva( long int *first, long int *last, long int value ) // busca ternaria iterativa
+
+
+long int ternaria_recursiva( long int *first, long int *last, long int value, long int *backup) // busca ternaria recursiva
 {
     long int *t1,*t2;
 
     auto size = last - first;
         auto m = ((size/3)-1);
-        int i = 0;
 
-        first = &(vet[i]);
-        last = &(vet[size]);
-        t1 = &(vet[m]);
-        t2 = &(vet[m+m]);
+       
+     
+        t1 = &first[m];
+        t2 = &first[m+m];
 
-        if(value < t1){
-            return ternaria_recursiva(first+1,t1);
-        }else if(value > t1 && value < t2){
-            return ternaria_recursiva(t1+1,t2-1);
-        }else if(value > t2){
-            return ternaria_recursiva(t2+1,last);      
-        }if(first == value){
-            return first;
-        }else if(t1 == value){
-            return t1;
-        }else if(t2 == value){
-            return t2;
-        }else if(last == value){
-            return last;
+        if(value < *t1){
+            return ternaria_recursiva(first+1,t1,value,backup);
+        }else if(value > *t1 && value < *t2){
+            return ternaria_recursiva(t1+1,t2-1,value,backup) ;
+        }else if(value > *t2){
+            return ternaria_recursiva(t2+1,last,value,backup);      
+        }if(*first == value){
+            return first - backup;
+        }else if(*t1 == value){
+            return t1 - backup;
+        }else if(*t2 == value){
+            return t2 - backup;
+        }else if(*last == value){
+            return last - backup;
         }else{
-            return -1;
-        }
+			return -1;
+		}
+        
 }
 
 int JSearch( long int *first, long int *last, long int value )
