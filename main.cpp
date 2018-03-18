@@ -1,4 +1,5 @@
 #include "funcoes.h"
+#include "tempo.h"
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
 		{
 			std::cout<<"Você digitou um valor inválido, insira novamente: "<<std::endl;
 			std::cin>>size;
-		}else if(size < t){
+		}else if(size <= t){
 			verif = 0;
 		}
 
@@ -37,9 +38,8 @@ int main()
 	std::cout<<"Digite o valor a ser buscado: "<<std::endl;
 	std::cin>>numero;
 
-	result = JSearch(first, last, numero);
+	tempo_funcao_sequencial_iterativa(first, last, numero);
 
-	std::cout<<result;
 
 	return 0;
 }

@@ -193,6 +193,10 @@ long int fibonacci( long int *first, long int *last, long int value)
 {
     /*Variáveis utilizadas para a busca:
     fib_2, fib_1, fib: Variáveis utilizadas para guardar os valores da soma de fibonacci
+    size: variável para guardar o temanho desejado para o vetor
+    offset: uma compensação para verificar o primeiro valor do bloco, que pode se perder durante a iteração
+    i: variável que vai guardar o índice atual na busca, caso o elemento nessa posição seja de ordem menor,
+    ele volta um passo na soma de fibonacci, caso seja maior, é voltado dois passos
     */
     int fib_2 = 0;
     int fib_1 = 1;
@@ -208,11 +212,12 @@ long int fibonacci( long int *first, long int *last, long int value)
     } 
 
     int offset = -1;
+    int i;
 
     while(fib > 1)
     {
        
-        int i = min(offset+fib_2, size-1);
+        i = min(offset+fib_2, size-1);
  
        
         if(first[i] < value)

@@ -1,17 +1,15 @@
-#include <iostream>
-#include "funcoes.h"
-#include <iterator>
-#include <vector>
-#include <chrono>
+#include "tempo.h"
 
-void tempofuncaoiterativa(long int *first,long int *last,long int numero){
+void tempo_funcao_sequencial_iterativa(long int *first,long int *last,long int numero){
 
 auto start = std::chrono::steady_clock::now();
 
-long int sequencial_iterativa(*first,*last,numero);
+
+sequencial_iterativa(first, last, numero);
 
 auto end = std::chrono::steady_clock::now();
-double x = std::chrono::duration <double, std::milli> (end-start).count()
+
+double x = std::chrono::duration <double, std::milli> (end-start).count();
 
 std::cout<< x;
 
@@ -19,55 +17,81 @@ return ;
 
 }
 
-/*void tempofuncaoiterativa(*first,*last,numero){
+void tempo_funcao_binaria_iterativa(long int *first, long int *last, long int numero){
 
 auto start = std::chrono::steady_clock::now();
 
-long int binaria_iterativa(*first,*last,numero);
+binaria_iterativa(first,last,numero);
 
 auto end = std::chrono::steady_clock::now();
-double x = std::chrono::duration <double, std::milli> (end-start).count()
+
+double x = std::chrono::duration <double, std::milli> (end-start).count();
+
+std::cout<< x;
 
 return ; 
 
 }
 
-void tempofuncaoiterativa(*first,*last,numero){
+void tempo_funcao_ternaria_iterativa(long int *first,long int *last, long int numero){
 
 auto start = std::chrono::steady_clock::now();
 
-long int ternaria_iterativa(*first,*last,numero);
+ternaria_iterativa(first,last,numero);
 
 auto end = std::chrono::steady_clock::now();
-double x = std::chrono::duration <double, std::milli> (end-start).count()
+double x = std::chrono::duration <double, std::milli> (end-start).count();
+
+std::cout<< x;
 
 return ; 
 
 }
 
-void tempofuncaoiterativa(*first,*last,numero){
+void tempo_funcao_ternaria_recursiva(long int *first,long int *last,long int numero){
 
 auto start = std::chrono::steady_clock::now();
 
-long int JSearch(*first,*last,numero);
+
+ternaria_recursiva(first, last, numero, first);
 
 auto end = std::chrono::steady_clock::now();
-double x = std::chrono::duration <double, std::milli> (end-start).count()
+
+double x = std::chrono::duration <double, std::milli> (end-start).count();
+
+std::cout<< x;
 
 return ; 
 
 }
 
-void tempofuncaoiterativa(*first,*last,numero){
+void tempo_funcao_JSearch_iterativa(long int *first,long int *last, long int numero){
 
 auto start = std::chrono::steady_clock::now();
 
-long int fibonacci(*first,*last,numero);
+JSearch(first,last,numero);
 
 auto end = std::chrono::steady_clock::now();
-double x = std::chrono::duration <double, std::milli> (end-start).count()
+double x = std::chrono::duration <double, std::milli> (end-start).count();
+
+std::cout<< x;
 
 return ; 
 
 }
-*/
+
+void tempo_funcao_fibonacci_iterativa(long int *first,long int *last,long int numero){
+
+auto start = std::chrono::steady_clock::now();
+
+fibonacci(first,last,numero);
+
+auto end = std::chrono::steady_clock::now();
+double x = std::chrono::duration <double, std::milli> (end-start).count();
+
+std::cout<< x;
+
+return ; 
+
+}
+
