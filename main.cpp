@@ -1,13 +1,10 @@
-#include <iostream>
 #include "funcoes.h"
-#include <iterator>
-#include <vector>
 
 int main()
 {
 
 	int verif = 1;
-	long int  size, numero, i, t;
+	long int  size, numero, i, t, result;
 
 	t = 100000000;
 
@@ -39,6 +36,10 @@ int main()
 
 	std::cout<<"Digite o valor a ser buscado: "<<std::endl;
 	std::cin>>numero;
+
+	result = JSearch(first, last, numero);
+
+	std::cout<<result;
 
 	return 0;
 }

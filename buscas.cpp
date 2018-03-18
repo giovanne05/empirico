@@ -1,7 +1,4 @@
-#include <iostream>
-#include <iterator>
-#include <vector>
-#include <cmath>
+#include "funcoes.h"
 
 long int min( long int x, long int y)
 {
@@ -25,7 +22,7 @@ long int sequencial_iterativa( long int *first, long int *last, long int value )
     return -1; 
 }
 
-int binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
+long int binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
 {
     long int *backup;
 
@@ -59,7 +56,7 @@ return -1;
 }
  
 
-int ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
+long int ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
 {
 
 	long int *backup;
@@ -136,24 +133,30 @@ long int ternaria_recursiva( long int *first, long int *last, long int value, lo
         
 }
 
-int JSearch( long int *first, long int *last, long int value )
+long int JSearch( long int *first, long int *last, long int value )
 {
-    long int *inicio, *fim, m, prev;
+    /*Variáveis utilizadas para a busca:
+    m: tamanho do bloco a ser pulado
+    prev: posição do final do bloco anterior
+    size: variável utilizada para saber o tamanho maximo do vetor
+    */
+    long int  m, prev;
     
-    inicio = first;
-    fim = last;
-
-    long int size = fim - inicio;
+    long int size = last - first;
 		
     prev = 0;    
 
     m = ceil(sqrt(size));
 
-    if(*fim == value){
+    /*Aqui é feita a verificação para saber se o elemento procurado é o ultimo do vetor,
+    pois a JumpSearch nem sempre verifica a ultima posição durante sua iteração*/
+    if(*(last-1) == value){
         return size;
     }
 
-    while(inicio[min( m, size )] < value)
+    /*Aqui é feito os "pulos" pelo vetor até que o elemento procurado esteja entre a posição prev e m do vetor.
+    Verificando sempre se o valor atual não passou do tamanho maximo do vetor*/
+    while(first[min( m, size )] < value)
     {
         prev = m;
         m = m + m;
@@ -164,7 +167,8 @@ int JSearch( long int *first, long int *last, long int value )
         }
     }
 
-    while(inicio[prev] < value)
+    /*Aqui começa a busca pelo elemento desejado dentro do bloco [prev/m]*/
+    while(first[prev] < value)
     {
         prev++;
 
@@ -174,24 +178,27 @@ int JSearch( long int *first, long int *last, long int value )
         }
     }
 
-    if(inicio[prev] == value)
+    //Se o valor foi encontrado, a função retorna ele para a main
+    if(first[prev] == value)
     {
         return prev;
     }
 
     
-
+    //Caso o valo não esteja no vetor, é retornado -1
     return -1;
 }
 
 long int fibonacci( long int *first, long int *last, long int value)
 {
+    /*Variáveis utilizadas para a busca:
+    fib_2, fib_1, fib: Variáveis utilizadas para guardar os valores da soma de fibonacci
+    */
     int fib_2 = 0;
     int fib_1 = 1;
     int fib = fib_1 + fib_2;
 
-    long int *inicio = first, *fim = last;
-    long int size = fim - inicio;
+    long int size = last - first;
 
     while(fib < size)
     {
@@ -208,7 +215,7 @@ long int fibonacci( long int *first, long int *last, long int value)
         int i = min(offset+fib_2, size-1);
  
        
-        if(inicio[i] < value)
+        if(first[i] < value)
         {
             fib  = fib_1;
             fib_1 = fib_2;
@@ -217,7 +224,7 @@ long int fibonacci( long int *first, long int *last, long int value)
         }
  
        
-        else if(inicio[i] > value)
+        else if(first[i] > value)
         {
             fib  = fib_2;
             fib_1 = fib_1 - fib_2;
@@ -228,7 +235,7 @@ long int fibonacci( long int *first, long int *last, long int value)
         } 
     }
 
-    if(fib_1 && inicio[offset+1] == value)
+    if(fib_1 && first[offset+1] == value)
     {
         return offset+1;
     }
