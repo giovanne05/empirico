@@ -24,35 +24,40 @@ long int sequencial_iterativa( long int *first, long int *last, long int value )
 
     return -1; 
 }
+
 int binaria_iterativa( long int *first, long int *last, long int value ) // busca binaria iterativa
 {
-    int i = 0;
+    long int *backup;
+
+    backup = first;
+    
+    long int *t1;
+    
+
     do{
-        auto size = last - first;
-        auto m = ((size/2)-1);
-        
-        if(value < vet[m]){
-            first = &(vet[i]);
-            last = &(vet[m-1]);
-        }else if(value > vet[m]){
-            first = &(vet[m+1]);
-            last = &(vet[size]);
+       
+    t1 =(last - first)/2 + first;
+
+
+        if(value == *t1){
+            return t1 - backup;
+        }else if(value == *first){
+            return first - backup;      
+        }else if(value == *last){
+            return last - backup;   
+        }else if(value < *t1){
+            last = t1 -1;
+        }else if(value > *t1){
+            first = t1 + 1;
         }
-        i++;
 
-   }while(first != value && vet[m] != value && last != value && first != last);
+    
+    }while(first<=last);
 
-   if(first == value){
-        return first;
-   }else if(vet[m] == value){
-        return vet[m];
-   }else if(last == value){
-        return last;
-   }else{
-        return -1;
-   }
- 
+return -1;
+    
 }
+ 
 
 int ternaria_iterativa( long int *first, long int *last, long int value ) // busca ternaria iterativa
 {
