@@ -56,15 +56,29 @@ int main()
 
 
 	//testes.open("testes.txt");
+	
+	f1.open("f1.txt");
+	
+	/*f2.open("f2.txt");
+	f3.open("f3.txt");
+	f4.open("f4.txt");
+	f5.open("f5.txt");
+	f6.open("f6.txt");
+	*/
+
+
 
 	for (auto i = 1; i <= 25; i++){
+
+		f1<<size<<", ";
+
 		for (auto j = 1 ; j <= 100 ; j++){
 			x = tempo_funcao_sequencial_iterativa(first, last, numero);
 			m1 = m1 + ((x+m1)/j);
 		}
-		f1.open("f1.txt");
-		f1 << m1;
-		f1.close();
+		
+		f1 << m1<<", ";
+		
 
 		m1 = 0;
 		x = 0;
@@ -73,9 +87,9 @@ int main()
 			x = tempo_funcao_binaria_iterativa(first, last, numero);
 			m1 = m1 + ((x+m1)/j);
 		}
-		f2.open("f2.txt");
-		f2 << m1;
-		f2.close();
+		
+		//f2 << m1<<" ,";
+		f1 << m1<<", ";
 
 		m1 = 0;
 		x = 0;
@@ -85,9 +99,9 @@ int main()
 			m1 = m1 + ((x+m1)/j);
 		}
 
-		f3.open("f3.txt");
-		f3<< m1;
-		f3.close();
+		f1 << m1<<", ";
+		//f3<< m1<<" ,";
+		
 
 		m1 = 0;
 		x = 0;
@@ -97,9 +111,8 @@ int main()
 			m1 = m1 + ((x+m1)/j);
 		}
 
-		f4.open("f4.txt");
-		f4 << m1;
-		f4.close();
+		//f4 << m1<<" ,";
+		f1 << m1<<", ";
 
 		m1 = 0;
 		x = 0;
@@ -109,9 +122,9 @@ int main()
 			m1 = m1 + ((x+m1)/j);
 		}
 
-		f5.open("f5.txt");
-		f5 << m1;
-		f5.close();
+		
+		//f5 << m1<<" ,";
+		f1 << m1<<", ";
 
 		m1 = 0;
 		x = 0;
@@ -121,9 +134,9 @@ int main()
 			m1 = m1 + ((x+m1)/j);
 		}
 
-		f6.open("f6.txt");
-		f6 << m1;
-		f6.close();
+		
+		//f6 << m1<<" ,";
+		f1 << m1<<" ";
 
 		m1 = 0;
 		x = 0;
@@ -131,8 +144,17 @@ int main()
 		size = size + 4000000;
 		last = first + size;
 
-	}
+		f1 << m1<<std::endl;
 
+	}
+	
+	f1.close();
+	/*f2.close();
+	f3.close();
+	f4.close();
+	f5.close();
+	f6.close();
+	*/
 
 	return 0;
 }
